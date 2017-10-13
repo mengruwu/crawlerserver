@@ -4,7 +4,7 @@ var cors = require('cors');
 var music_crawler = require('./api/music_crawler.js');
 var beauty_crawler = require('./api/beauty_crawler.js');
 var pttbeauty_home = require('./api/pttbeauty_home.js');
-
+//beauty_crawler(pttbeauty_home());
 app.use(cors());
 
 app.set('port', (process.env.PORT || 5000));
@@ -29,7 +29,10 @@ app.get('/api/music', function(req, res) {
 })
 
 app.get('/api/beauty', function(req, res) { 
-  res.send(beauty_crawler(req.query.page));
+  beauty_crawler(req.query.page);
+  setTimeout(function(){
+    res.send(beauty_crawler(req.query.page));
+  }, 2000);
 })
 
 app.get('/api/beauty/home', function(req, res) { 
