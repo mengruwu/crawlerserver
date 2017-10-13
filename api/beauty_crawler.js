@@ -20,7 +20,7 @@ var getBeautyUrl = function (page) {
 }
 
 var setRet = function(page, title, href, children) {
-    if(children.length == 0)return;
+    if(children.length <= 3)return;
     ret[page].push({
         title: title, 
         href: href,
@@ -36,7 +36,7 @@ var getBeauty = function(page, title, href, callback) {
         var $ = cheerio.load(body);
         $('a').each(function(i, e) {
             var src = $(this).attr('href');
-            if(src[src.length-1] == 'g')
+            if(src[src.length-1] == 'g' && src[src.length-2] == 'p')
                 children.push(src);
         });
         callback(page, title, href, children);
