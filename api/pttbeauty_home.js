@@ -25,7 +25,6 @@ var setUrl = function (s) {
 }
 
 module.exports = function () {
-    while(!ret_url);
     var sub = ret_url.substr(ret_url.length-9, 4);
     var tmp = parseInt(sub) + 1;
     var ret = { home: tmp.toString() };

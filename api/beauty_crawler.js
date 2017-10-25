@@ -10,9 +10,11 @@ var getBeautyUrl = function (page) {
 
             var $ = cheerio.load(body);
             $('div.title a').each(function(i, e){
-                var title = $(this).text();
-                var href = head_url + $(this).attr('href');
-                getBeauty(page, title, href, setRet);
+                let title = $(this).text();
+                let href = head_url + $(this).attr('href');
+                if($(this).attr('href').split('.')[3] !='0C7') {              
+                    getBeauty(page, title, href, setRet);
+                }
             });
         });
     }

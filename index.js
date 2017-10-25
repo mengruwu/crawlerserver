@@ -29,10 +29,15 @@ app.get('/api/music', function(req, res) {
 })
 
 app.get('/api/beauty', function(req, res) { 
-  beauty_crawler(req.query.page);
-  setTimeout(function(){
-    res.send(beauty_crawler(req.query.page));
-  }, 2000);
+  var data = beauty_crawler(req.query.page);
+  if(data !== undefined && data.length > 2) {
+    res.send(data);
+  }
+  else {
+    setTimeout(function(){
+      res.send(beauty_crawler(req.query.page));
+    }, 2500);
+  }
 })
 
 app.get('/api/beauty/home', function(req, res) { 
